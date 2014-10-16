@@ -16,125 +16,160 @@ endif
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
-function! FormatprgLocal(filter)
-  if !empty(v:char)
-    return 1
-  else
-    let l:command = v:lnum.','.(v:lnum+v:count-1).'!'.a:filter
-    echo l:command
-    execute l:command
-  endif
-endfunction
-
-if has("autocmd")
-  augroup ragtag_filetypes
-    autocmd!
-    autocmd FileType markdown    call RagtagInit()
-  augroup END
-  let pandoc_pipeline  = "pandoc --from=html --to=markdown"
-  let pandoc_pipeline .= " | pandoc --from=markdown --to=html"
-  autocmd FileType html setlocal formatexpr=FormatprgLocal(pandoc_pipeline)
-endif
-
-" Colorscheme
-set background=light
-silent! colorscheme default
-
-set hidden
-
-" Plugin configuration {{{1
-" netrw.vim {{{2
-let g:netrw_banner=0
-" Don't show undo files in the explorer
-let g:netrw_list_hide='\.un\~$'
-" Vim-ruby {{{2
-" let ruby_fold=1
-" Markdown {{{2
-let g:markdown_fenced_languages = ['ruby', 'javascript']
-" FIXME:
-" Markdown files have foldmethod=syntax when both of these options are set:
-" let ruby_fold=1
-" let g:markdown_fenced_languages = ['ruby', 'javascript']
-" to debug, run :verbose set foldmethod?
-"
-" Solarized {{{2
-let g:solarized_menu=0
-if exists('*togglebg#map')
-  call togglebg#map("<F5>")
-endif
-" Ctlr-P {{{2
-let g:ctrlp_jump_to_buffer = 0
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_user_command = 'find %s -type f'
-" Ragel {{{2
-augroup ragel
-  autocmd!
-  autocmd BufNewFile,BufRead *.rl setfiletype ragel
-augroup END
-let g:ragel_default_subtype='ruby'
-
-" Mappings {{{1
-" Override defaults {{{2
-nnoremap Q <Nop>
-" File opening {{{2
-cnoremap <expr> %%  getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
-
-map <leader>ew :e %%
-map <leader>es :sp %%
-map <leader>ev :vsp %%
-map <leader>et :tabe %%
-
-" Prompt to open file with same name, different extension
-map <leader>er :e <C-R>=expand("%:r")."."<CR>
 
 
-" Fix the & command in normal+visual modes {{{2
-nnoremap & :&&<Enter>
-xnoremap & :&&<Enter>
-
-" Strip trailing whitespace {{{2
-function! Preserve(command)
-  " Preparation: save last search, and cursor position.
-  let _s=@/
-  let l = line(".")
-  let c = col(".")
-  " Do the business:
-  execute a:command
-  " Clean up: restore previous search history, and cursor position
-  let @/=_s
-  call cursor(l, c)
-endfunction
-
-nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
-
-" Visual line repeat {{{2
-xnoremap . :normal .<CR>
-xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
-
-function! ExecuteMacroOverVisualRange()
-  echo "@".getcmdline()
-  execute ":'<,'>normal @".nr2char(getchar())
-endfunction
-
-" Experimental mappings {{{2
-nnoremap g" /\v<<C-r>"><CR>
-
-command! Path :call EchoPath()
-function! EchoPath()
-  echo join(split(&path, ","), "\n")
-endfunction
-
-command! TagFiles :call EchoTags()
-function! EchoTags()
-  echo join(split(&tags, ","), "\n")
-endfunction
+" Automatic reloading of .vimrc
+autocmd! bufwritepost .vimrc source %
 
 
-let g:EasyClipUseSubstituteDefaults = 1
-nmap <silent> gs <plug>SubstituteOverMotionMap
-nmap gss <plug>SubstituteLine
-xmap gs p
+" Better copy & paste
+" When you want to paste large blocks of code into vim, press F2 before you
+" paste. At the bottom you should see ``-- INSERT (paste) --``.
 
+set pastetoggle=<F2>
+set clipboard=unnamed
+
+
+" Mouse and backspace
+set mouse=a  " on OSX press ALT and click
+set bs=2     " make backspace behave like normal again
+
+
+" Rebind <Leader> key
+" I like to have it here becuase it is easier to reach than the default and
+" it is next to ``m`` and ``n`` which I use for navigating between tabs.
+let mapleader = ","
+
+
+" Bind nohl
+" Removes highlight of your last search
+" ``<C>`` stands for ``CTRL`` and therefore ``<C-n>`` stands for ``CTRL+n``
+noremap <C-n> :nohl<CR>
+vnoremap <C-n> :nohl<CR>
+inoremap <C-n> :nohl<CR>
+
+
+" Quicksave command
+noremap <C-Z> :update<CR>
+noremap <C-Z> <C-C>:update<CR>
+inoremap <C-Z> <C-O>:update<CR>
+
+
+" Quick quit command
+noremap <Leader>e :quit<CR>  " Quit current window
+noremap <Leader>E :qa!<CR>   " Quit all windows
+
+
+" bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
+" Every unnecessary keystroke that can be saved is good for your health :)
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+
+" easier moving between tabs
+map <Leader>n <esc>:tabprevious<CR>
+map <Leader>m <esc>:tabnext<CR>
+
+
+" map sort function to a key
+"" vnoremap <Leader>s :sort<CR>
+
+
+" easier moving of code blocks
+" Try to go into visual mode (v), thenselect several lines of code here and
+" then press ``>`` several times.
+vnoremap < <gv  " better indentation
+vnoremap > >gv  " better indentation
+
+
+" Show whitespace
+" MUST be inserted BEFORE the colorscheme command
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+au InsertLeave * match ExtraWhitespace /\s\+$/
+
+
+" Color scheme
+" mkdir -p ~/.vim/colors && cd ~/.vim/colors
+" wget -O wombat256mod.vim http://www.vim.org/scripts/download_script.php?src_id=13400
+set t_Co=256
+color wombat256mod
+
+
+" Enable syntax highlighting
+" You need to reload this file for the change to apply
+filetype off
+filetype plugin indent on
+syntax on
+
+
+" Showing line numbers and length
+set number  " show line numbers
+set tw=79   " width of document (used by gd)
+set nowrap  " don't automatically wrap on load
+set fo-=t   " don't automatically wrap text when typing
+set colorcolumn=80
+highlight ColorColumn ctermbg=233
+
+
+" easier formatting of paragraphs
+"" vmap Q gq
+"" nmap Q gqap
+
+
+" Useful settings
+set history=700
+set undolevels=700
+
+
+" Real programmers don't use TABs but spaces
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set shiftround
+set expandtab
+
+
+" Make search case insensitive
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+
+" Disable stupid backup and swap files - they trigger too many events
+" for file system watchers
+set nobackup
+set nowritebackup
+set noswapfile
+
+
+" Setup Pathogen to manage your plugins
+" mkdir -p ~/.vim/autoload ~/.vim/bundle
+" curl -so ~/.vim/autoload/pathogen.vim https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+" Now you can install any plugin into a .vim/bundle/plugin-name/ folder
+call pathogen#infect()
+
+
+" ============================================================================
+" Python IDE Setup
+" ============================================================================
+
+
+" Settings for vim-powerline
+" cd ~/.vim/bundle
+" git clone git://github.com/Lokaltog/vim-powerline.git
+set laststatus=2
+
+
+" Settings for ctrlp
+" cd ~/.vim/bundle
+" git clone https://github.com/kien/ctrlp.vim.git
+"" let g:ctrlp_max_height = 30
+"" set wildignore+=*.pyc
+"" set wildignore+=*_build/*
+"" set wildignore+=*/coverage/*
 let g:EasyClipUseCutDefaults = 0
 nmap x <Plug>MoveMotionPlug
 xmap x <Plug>MoveMotionXPlug
