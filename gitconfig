@@ -1,6 +1,6 @@
 [user]
-	name = Drew Neil
-	email = andrew.jr.neil@gmail.com
+	name = deebuls
+	email = deebuls@gmail.com
 [alias]
 	ci = commit
 	st = status
@@ -11,6 +11,7 @@
 	ui = auto
 [core]
 	editor = /usr/local/bin/vim
-	excludesfile = /Users/drew/.gitignore
 [init]
 	templatedir = ~/.git_template
+[push]
+	default = tracking

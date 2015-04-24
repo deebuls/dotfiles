@@ -10,7 +10,7 @@ set nojoinspaces
 set foldlevelstart=99
 set noswapfile
 if has('mouse')
-  set mouse=nv
+    set mouse=nv
 endif
 
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
@@ -131,6 +131,7 @@ set softtabstop=4
 set shiftwidth=4
 set shiftround
 set expandtab
+set smarttab
 
 
 " Make search case insensitive
@@ -152,6 +153,7 @@ set noswapfile
 " curl -so ~/.vim/autoload/pathogen.vim https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 " Now you can install any plugin into a .vim/bundle/plugin-name/ folder
 " call pathogen#infect()
+
 
 
 " ============================================================================
