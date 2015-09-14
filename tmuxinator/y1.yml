@@ -1,0 +1,51 @@
+# ~/.tmuxinator/rndDevelopment.yml
+
+name: youbot-1-Robocup
+#root:  /data/dataDeebul/rnd/RecommenderSystemInRobotics/code/mir_teleop_record/
+
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+pre_window: source ~/.bashrc && source ~/catkin_ws/devel/setup.bash && export ROS_MASTER_URI=http://youbot-brsu-1-pc1:11311/
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+# startup_window: logs
+
+windows:
+  - editor:
+      layout: main-vertical
+      panes:
+        - cd /data/dataDeebul/rnd/RecommenderSystemInRobotics/code/mir_teleop_record 
+  - ros:
+      layout: main-vertical
+      panes:
+       - 
+       - sshpass -parea51 ssh robocup@youbot-brsu-1-pc1 
+       - sshpass -parea51 ssh robocup@youbot-brsu-1-pc1
+       - sshpass -parea51 ssh robocup@youbot-brsu-1-pc1
+       - 
+       - 
+  - ros-1:
+      layout: main-vertical
+      panes:
+       - 
+       - sshpass -parea51 ssh robocup@youbot-brsu-1-pc1 
+       - sshpass -parea51 ssh robocup@youbot-brsu-1-pc1
+       - sshpass -parea51 ssh robocup@youbot-brsu-1-pc1
+       - 
+       - 
+  - python:
+      layout: main-vertical
+      panes:
+       - source ~/anaconda/bin/activate root
+       - source ~/anaconda/bin/activate root

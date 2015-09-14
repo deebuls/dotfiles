@@ -1,0 +1,43 @@
+# ~/.tmuxinator/rndDevelopment.yml
+
+name: youbotRobocup
+#root:  /data/dataDeebul/rnd/RecommenderSystemInRobotics/code/mir_teleop_record/
+
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+pre_window: source ~/.bashrc && source ~/catkin_ws/devel/setup.bash && export ROS_MASTER_URI=http://youbot-brsu-1-pc1:11311/
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+# startup_window: logs
+
+windows:
+  - editor:
+      layout: main-vertical
+      panes:
+        - cd /data/dataDeebul/rnd/RecommenderSystemInRobotics/code/mir_teleop_record 
+  - ros:
+      layout: main-vertical
+      panes:
+       - roslaunch mcr_barcode_reader barcode_reader.launch
+       - sshpass -pstudent ssh student@youbot-brsu-1-pc1 
+       - sshpass -pstudent ssh student@youbot-brsu-1-pc1
+       - sshpass -pstudent ssh student@youbot-brsu-1-pc1
+       - roslaunch mir_2dnav 2dnav_dwa.launch
+       - rosrun rviz rviz -d ~/.rviz/navigation.rviz
+       - roslaunch mir_teleop_record telop_joypad.launch
+  - python:
+      layout: main-vertical
+      panes:
+       - source ~/anaconda/bin/activate root
+       - source ~/anaconda/bin/activate root
