@@ -111,6 +111,8 @@ fi
 
 source /opt/ros/hydro/setup.bash
 
+source /home/deebuls/catkin_ws/devel/setup.bash
+
 #export M2_HOME=/usr/local/apache-maven-3.2.3
 
 export M2=$M2_HOME/bin
@@ -120,8 +122,9 @@ export MAVEN_OPTS="-Xms256m -Xmx512m"
 export PATH=$M2:$PATH
 
 export EDITOR=vim   #for tmuxinator 
-export ROBOT=youbot-brsu-2
+export ROBOT=youbot-brsu-1
 export ROBOT_ENV=brsu-c025
 
 # added by Anaconda 2.1.0 installer
 #export PATH="/home/deebuls/anaconda/bin:$PATH"
+export YOUBOT_HOME=/data/dataDeebul/3Sem_MAS/learning/project/estimate_inertial/python/youbot-py/youbot_driver
