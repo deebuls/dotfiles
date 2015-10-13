@@ -1,6 +1,6 @@
 [user]
 	name = deebuls
-	email = deebuls@gmail.com
+	email = deebul.nair@smail.inf.h-brs.de
 [alias]
 	ci = commit
 	st = status
@@ -8,9 +8,9 @@
 	co = checkout
 	ctags = !.git/hooks/ctags
 [color]
-	ui = auto
+	ui = true
 [core]
-	editor = /usr/local/bin/vim
+	editor = vim
 [init]
 	templatedir = ~/.git_template
 [push]
