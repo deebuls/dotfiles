@@ -56,10 +56,18 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+#parameters for git 
+source /usr/share/git-core/contrib/completion/git-prompt.sh
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWSTASHSTATE=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
+
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='\[\033[01;30m\]\h\[\033[01;34m\] \W\[\033[35m\]$(__git_ps1 " %s") \[\033[01;30m\]>\[\033[00m\]' 
+    PS1='\[\033[01;30m\]\h\[\033[01;34m\] \W\[\033[35m\]$(__git_ps1 " (%s)") \[\033[01;30m\]>\[\033[00m\]' 
+    ## prompt with git status
+    #PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 fi
 unset color_prompt force_color_prompt
 
