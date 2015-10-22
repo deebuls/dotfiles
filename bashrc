@@ -59,18 +59,10 @@ fi
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='$:\w\$ '
+    PS1='\[\033[01;30m\]\h\[\033[01;34m\] \W\[\033[35m\]$(__git_ps1 " %s") \[\033[01;30m\]>\[\033[00m\]' 
 fi
 unset color_prompt force_color_prompt
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1=": \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -85,9 +77,9 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-#alias ll='ls -l'
-#alias la='ls -A'
-#alias l='ls -CF'
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -113,13 +105,6 @@ source /opt/ros/hydro/setup.bash
 
 source /home/deebuls/catkin_ws/devel/setup.bash
 
-#export M2_HOME=/usr/local/apache-maven-3.2.3
-
-export M2=$M2_HOME/bin
-
-export MAVEN_OPTS="-Xms256m -Xmx512m"
-
-export PATH=$M2:$PATH
 
 export EDITOR=vim   #for tmuxinator 
 export ROBOT=youbot-brsu-1
@@ -127,4 +112,16 @@ export ROBOT_ENV=brsu-c025
 
 # added by Anaconda 2.1.0 installer
 #export PATH="/home/deebuls/anaconda/bin:$PATH"
-export YOUBOT_HOME=/data/dataDeebul/3Sem_MAS/learning/project/estimate_inertial/python/youbot-py/youbot_driver
+
+
+export FAWKES_DIR=/data/dev/fawkes/fawkes-athome
+export GAZEBO_RCLL=/data/dev/fawkes/gazebo-models/gazebo-rcll
+export GAZEBO_PLUGIN_PATH=$GAZEBO_PLUGIN_PATH:$GAZEBO_RCLL/plugins/lib/gazebo
+export GAZEBO_ATHOME_PATH=/data/dev/fawkes/gazebo-models/athome
+export GAZEBO_MODEL_PATH=$GAZEBO_RCLL/models
+export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:$GAZEBO_ATHOME_PATH
+export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:$GAZEBO_RCLL/models/carologistics
+export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:$GAZEBO_RCLL/models/carologistics
+
+export LLSF_REFBOX_DIR=~/llsf-refbox
+export GAZEBO_WORLD_PATH=~/gazebo-rcll/worlds/carologistics/llsf.world
