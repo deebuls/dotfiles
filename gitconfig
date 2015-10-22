@@ -9,6 +9,7 @@
 	ctags = !.git/hooks/ctags
 [color]
 	ui = true
+	status = true
 [core]
 	editor = vim
 [init]
