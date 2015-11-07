@@ -1,5 +1,5 @@
 [user]
-	name = deebuls
+	name = Deebul Nair
 	email = deebul.nair@smail.inf.h-brs.de
 [alias]
 	ci = commit
@@ -15,4 +15,4 @@
 [init]
 	templatedir = ~/.git_template
 [push]
-	default = tracking
+	default = upstream

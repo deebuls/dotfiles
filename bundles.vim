@@ -4,7 +4,6 @@ filetype off
 " Vundle setup
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'gmarik/vundle'
 
 " General enhancements
 " Plugin 'tpope/vim-abolish.git'
@@ -18,9 +17,9 @@ Plugin 'tpope/vim-fugitive.git'
 " Plugin 'tpope/vim-scriptease.git'
 " Plugin 'tpope/vim-sensible.git'
 " Plugin 'tpope/vim-sleuth.git'
-" Plugin 'tpope/vim-surround.git'
+Plugin 'tpope/vim-surround.git'
 " Plugin 'tpope/vim-tbone.git'
-" Plugin 'tpope/vim-unimpaired.git'
+Plugin 'tpope/vim-unimpaired.git'
 " Plugin 'tpope/vim-projectile.git'
 " Plugin 'nelstrom/vim-visual-star-search'
 " Plugin 'nelstrom/vim-docopen'
@@ -59,8 +58,10 @@ Plugin 'nelstrom/vim-blackboard.git'
 Plugin 'tpope/vim-markdown.git'
 Plugin 'nelstrom/vim-markdown-folding.git'
 
-" Experimental
-" Plugin 'svermeulen/vim-easyclip'
-" Plugin 'tommcdo/vim-exchange'
+"Plugin 'SirVer/ultisnips' 
+" Problem with the python with which it has been
+" compiled recompile vim with other python 
+Plugin 'honza/vim-snippets'
+
 call vundle#end()
 filetype plugin indent on

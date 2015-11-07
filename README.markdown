@@ -12,6 +12,7 @@ running the commands:
 Create symlinks:
 
     ln -s ~/dotfiles/bashrc ~/.bashrc
+    ln -s ~/dotfiles/bash_aliases ~/.bash_aliases
     ln -s ~/dotfiles/vimrc ~/.vimrc
     ln -s ~/dotfiles/gvimrc ~/.gvimrc
     ln -s ~/dotfiles/irbrc ~/.irbrc
