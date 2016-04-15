@@ -63,5 +63,8 @@ Plugin 'nelstrom/vim-markdown-folding.git'
 " compiled recompile vim with other python 
 Plugin 'honza/vim-snippets'
 
+" Vim ros
+Plugin 'taketwo/vim-ros'
+
 call vundle#end()
 filetype plugin indent on

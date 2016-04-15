@@ -106,6 +106,15 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# ssh agent
+if ! pgrep -u $USER ssh-agent > /dev/null; then
+    ssh-agent > ~/.ssh-agent-thing
+fi
+if [[ "$SSH_AGENT_PID" == "" ]]; then
+    eval $(<~/.ssh-agent-thing)
+fi
+ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
+
 source /opt/ros/hydro/setup.bash
 
 source /home/deebuls/catkin_ws/devel/setup.bash
@@ -119,7 +128,9 @@ export ROBOT_ENV=brsu-c025
 #export PATH="/home/deebuls/anaconda/bin:$PATH"
 
 
-export FAWKES_DIR=/data/dev/fawkes/fawkes-athome
+#export FAWKES_DIR=/data/dev/fawkes/fawkes-athome
+#export FAWKES_DIR=/data/dev/fawkes/fawkes-robotino
+export FAWKES_DIR=~/Downloads/fawkes-robotino
 export GAZEBO_RCLL=/data/dev/fawkes/gazebo-models/gazebo-rcll
 export GAZEBO_PLUGIN_PATH=$GAZEBO_PLUGIN_PATH:$GAZEBO_RCLL/plugins/lib/gazebo
 export GAZEBO_ATHOME_PATH=/data/dev/fawkes/gazebo-models/athome
@@ -128,5 +139,12 @@ export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:$GAZEBO_ATHOME_PATH
 export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:$GAZEBO_RCLL/models/carologistics
 export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:$GAZEBO_RCLL/models/carologistics
 
-export LLSF_REFBOX_DIR=~/llsf-refbox
-export GAZEBO_WORLD_PATH=~/gazebo-rcll/worlds/carologistics/llsf.world
+export LLSF_REFBOX_DIR=/data/dev/fawkes/llsf-refbox
+export GAZEBO_WORLD_PATH=$GAZEBO_RCLL/worlds/carologistics/llsf.world
+
+
+
+#Rosplanning mercury planner pddl import
+export PYTHONPATH=$PYTHONPATH:/home/deebuls/new_catkin_ws/src/rockin_planning/mcr_task_planning/mcr_planners/mcr_mercury_planner/common/src/translate
+
+export PATH=~/dotfiles/ssh-indent/bin:$PATH

@@ -28,7 +28,7 @@ autocmd! bufwritepost .vimrc source %
 
 set pastetoggle=<F2>
 set clipboard=unnamed
-
+vmap <C-c> "+y
 
 " Mouse and backspace
 set mouse=a  " on OSX press ALT and click
@@ -58,8 +58,8 @@ inoremap <C-Z> <C-O>:update<CR>
 
 
 " Quick quit command
-noremap <Leader>e :quit<CR>  " Quit current window
-noremap <Leader>E :qa!<CR>   " Quit all windows
+noremap <Leader>q :quit<CR>  " Quit current window
+noremap <Leader>Q :qa!<CR>   " Quit all windows
 
 
 " bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
@@ -71,6 +71,7 @@ map <c-h> <c-w>h
 
 
 " easier moving between tabs
+map <c-t> <esc>:tabnew<CR>:e .<CR>
 map <Leader>n <esc>:tabprevious<CR>
 map <Leader>m <esc>:tabnext<CR>
 
@@ -157,6 +158,25 @@ set noswapfile
 " call pathogen#infect()
 
 
+" Tell vim to remember certain things when we exit
+"  '10  :  marks will be remembered for up to 10 previously edited files
+"  "100 :  will save up to 100 lines for each register
+"  :20  :  up to 20 lines of command-line history will be remembered
+"  %    :  saves and restores the buffer list
+"  n... :  where to save the viminfo files
+set viminfo='10,\"100,:20,%,n~/.viminfo
+    
+function! ResCur()
+    if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+    endif
+endfunction
+    
+augroup resCur
+    autocmd!
+    autocmd BufWinEnter * call ResCur()
+augroup END
 
 " ============================================================================
 " Python IDE Setup
