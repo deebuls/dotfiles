@@ -148,3 +148,5 @@ export GAZEBO_WORLD_PATH=$GAZEBO_RCLL/worlds/carologistics/llsf.world
 export PYTHONPATH=$PYTHONPATH:/home/deebuls/new_catkin_ws/src/rockin_planning/mcr_task_planning/mcr_planners/mcr_mercury_planner/common/src/translate
 
 export PATH=~/dotfiles/ssh-indent/bin:$PATH
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

@@ -2,7 +2,8 @@ alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 
-
+#foxit reader 
+alias foxit='/home/deebuls/opt/foxitsoftware/foxitreader/FoxitReader'
 #connecting wifi
 alias con='nmcli con up id '
 alias conlist='nmcli dev wifi '
