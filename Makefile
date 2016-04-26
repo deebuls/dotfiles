@@ -8,8 +8,8 @@ all:deploy
 	ln -sf ~/dotfiles/vimrc ~/.vimrc
 	ln -sf ~/dotfiles/gvimrc ~/.gvimrc
 	ln -sf ~/dotfiles/irbrc ~/.irbrc
-	ln -sf ~/dotfiles/vim ~/.vim
-	ln -sf ~/dotfiles/ctags ~/.ctags
+	ln -sf ~/dotfiles/vim/ ~/.vim
+	ln -sf ~/dotfiles/ctags/ ~/.ctags
 	ln -sf ~/dotfiles/jshintrc ~/.jshintrc
 	ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
 	ln -sf ~/dotfiles/gitconfig ~/.gitconfig
