@@ -57,7 +57,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 #parameters for git 
-source /usr/share/git-core/contrib/completion/git-prompt.sh
+#source /usr/share/git-core/contrib/completion/git-prompt.sh
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=1
 export GIT_PS1_SHOWUNTRACKEDFILES=1
@@ -107,25 +107,22 @@ if ! shopt -oq posix; then
 fi
 
 # ssh agent
-if ! pgrep -u $USER ssh-agent > /dev/null; then
-    ssh-agent > ~/.ssh-agent-thing
-fi
-if [[ "$SSH_AGENT_PID" == "" ]]; then
-    eval $(<~/.ssh-agent-thing)
-fi
-ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
+#if ! pgrep -u $USER ssh-agent > /dev/null; then
+#    ssh-agent > ~/.ssh-agent-thing
+#fi
+#if [[ "$SSH_AGENT_PID" == "" ]]; then
+#    eval $(<~/.ssh-agent-thing)
+#fi
+#ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
 
-source /opt/ros/hydro/setup.bash
-
+#source /opt/ros/indigo/setup.bash
 source /home/deebuls/catkin_ws/devel/setup.bash
 
 
 export EDITOR=vim   #for tmuxinator 
-export ROBOT=youbot-brsu-1
-export ROBOT_ENV=brsu-c025
+export ROBOT=youbot-brsu-3
+export ROBOT_ENV=brsu-c025-sim
 
-# added by Anaconda 2.1.0 installer
-#export PATH="/home/deebuls/anaconda/bin:$PATH"
 
 
 #export FAWKES_DIR=/data/dev/fawkes/fawkes-athome
@@ -142,10 +139,6 @@ export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:$GAZEBO_RCLL/models/carologistics
 export LLSF_REFBOX_DIR=/data/dev/fawkes/llsf-refbox
 export GAZEBO_WORLD_PATH=$GAZEBO_RCLL/worlds/carologistics/llsf.world
 
-
-
-#Rosplanning mercury planner pddl import
-export PYTHONPATH=$PYTHONPATH:/home/deebuls/new_catkin_ws/src/rockin_planning/mcr_task_planning/mcr_planners/mcr_mercury_planner/common/src/translate
 
 export PATH=~/dotfiles/ssh-indent/bin:$PATH
 

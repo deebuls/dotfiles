@@ -9,8 +9,8 @@ alias con='nmcli con up id '
 alias conlist='nmcli dev wifi '
 
 #multi monitor support in dwm
-alias multi='xrandr --output CRT1 --auto --same-as LVDS --mode 1366x768'
-alias multi_extend='xrandr --output CRT1 --auto --right-of LVDS --auto'
+alias multi='xrandr --output VGA-0 --auto --same-as LVDS '
+alias multi_extend='xrandr --output VGA-0 --auto --right-of LVDS --auto'
 
 # FAWKES 
 FAWKES="/data/dev/fawkes/fawkes-athome/bin"
