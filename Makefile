@@ -15,6 +15,7 @@ all:deploy
 	ln -sf ~/dotfiles/gitconfig ~/.gitconfig
 	ln -sf ~/dotfiles/global-gitignore ~/.gitignore
 	ln -sf ~/dotfiles/surf ~/.surf
+	ln -sf ~/dotfiles/dwm ~/.dwm
 	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 	mkdir ~/tmp
 
